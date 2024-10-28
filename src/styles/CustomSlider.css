@@ -1,0 +1,17 @@
+.slider {
+    width: 100%;
+    margin: 0 auto;
+}
+.donation__swiper_button {
+    background: #fff;
+    filter: drop-shadow(0px 2px 6px #000000);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 40px 10px;
+}
+.donation__swiper_button:hover {
+    opacity: 60%;
+    cursor: pointer;
+}

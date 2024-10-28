@@ -1,0 +1,11 @@
+.custom__button {
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    outline: none;
+    background-color: #005bbb;
+}

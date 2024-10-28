@@ -1,0 +1,37 @@
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: #f5f7f8 solid 1px;
+}
+
+nav .navbar__left {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2vw;
+}
+nav .navbar__left .navbar__left_logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.7vw;
+    font-weight: 800;
+    font-size: 12px;
+}
+nav .navbar__left a {
+    text-decoration: none;
+    color: #475467;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+nav .navbar__right {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
