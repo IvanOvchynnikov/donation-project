@@ -1,6 +1,7 @@
 import '../styles/CustomCard.css';
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import backgroundImg from '../assets/img/card_bg.png';
 import imgHeart from '../assets/img/heart_yellow.svg';
@@ -29,10 +30,12 @@ const CustomCard = () => {
                         Remaining<p>1234$</p>
                     </div>
                 </div>
-                <CustomButton>
-                    Donate
-                    <img src={imgHeart} alt="Heart" className="card__donation-button" />
-                </CustomButton>
+                <Link to={'/donation'}>
+                    <CustomButton>
+                        Donate
+                        <img src={imgHeart} alt="Heart" className="card__donation-button" />
+                    </CustomButton>
+                </Link>
             </div>
         </div>
     );

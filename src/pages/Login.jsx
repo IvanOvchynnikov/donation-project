@@ -1,6 +1,7 @@
 import '../styles/Login.css';
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import imgEye from '../assets/img/eye.svg';
 import imgMail from '../assets/img/mail.svg';
@@ -33,7 +34,7 @@ const Login = () => {
                         <span>or</span>
                     </div>
                     <p>
-                        Do not have an account? <a href="#">Sign up</a>
+                        Do not have an account? <Link to={'/register'}>Sign up</Link>
                     </p>
                 </div>
             </div>

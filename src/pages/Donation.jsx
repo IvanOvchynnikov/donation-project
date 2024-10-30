@@ -1,6 +1,7 @@
 import '../styles/Donation.css';
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import imgPng from '../assets/img/doc.png';
 import imgKid from '../assets/img/kid.png';
@@ -14,7 +15,7 @@ const Donation = () => {
         <div className="container">
             <Navbar />
             <div className="donation__header">
-                <a href="#">{'< Back'}</a>
+                <Link to={'/'}>{'< Back'}</Link>
                 <h2>Let’s Make Education For All</h2>
                 <span className="donation__header-tag">🚨 Emergency Requirement</span>
             </div>

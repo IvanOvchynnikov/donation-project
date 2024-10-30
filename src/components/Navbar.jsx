@@ -1,6 +1,7 @@
 import '../styles/Navbar.css';
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import imgLogo from '../assets/img/logo.svg';
 import CustomButton from './CustomButton';
@@ -25,8 +26,12 @@ const Navbar = () => {
                     </a>
                 </div>
                 <div className="navbar__right">
-                    <CustomButton style_variant="text">Log in</CustomButton>
-                    <CustomButton>Donate</CustomButton>
+                    <Link to={'/login'}>
+                        <CustomButton style_variant="text">Log in</CustomButton>
+                    </Link>
+                    <Link to={'/donation'}>
+                        <CustomButton>Donate</CustomButton>
+                    </Link>
                 </div>
             </nav>
         </>

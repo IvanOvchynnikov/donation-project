@@ -2,6 +2,7 @@ import '../styles/Login.css';
 import '../styles/Register.css';
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import imgEye from '../assets/img/eye.svg';
 import imgTruzyb from '../assets/img/truzyb.svg';
@@ -34,7 +35,7 @@ const Register = () => {
                         <span>or</span>
                     </div>
                     <p className="register__window_right__have">
-                        Already have an account? <a href="#">Log in</a>
+                        Already have an account? <Link to={'/login'}>Log in</Link>
                     </p>
                 </div>
             </div>

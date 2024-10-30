@@ -67,6 +67,9 @@
     justify-content: center;
     width: 100%;
 }
+.card__content a {
+    text-decoration: none;
+}
 .card__content button img {
     width: 21px;
     height: 19px;
