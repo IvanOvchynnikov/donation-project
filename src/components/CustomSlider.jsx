@@ -2,19 +2,28 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../styles/CustomSlider.css';
 
-import React, { useRef } from 'react';
+import React, { useEffect, useRef,useState } from 'react';
 import Slider from 'react-slick';
 
+import { fetchCards } from '../api/SliderApi';
 import CustomCard from './CustomCard';
 
 function PreviousNextMethods() {
-    let sliderReference = useRef(null);
+    const [cards, setCards] = useState([]);
+    const sliderReference = useRef(null);
+
+    useEffect(() => {
+        const response = fetchCards().then();
+        setCards([...response.data.cards]);
+    }, []);
     const next = () => {
-        sliderReference.slickNext();
+        sliderReference.current.slickNext();
     };
+
     const previous = () => {
-        sliderReference.slickPrev();
+        sliderReference.current.slickPrev();
     };
+
     const settings = {
         dots: false,
         infinite: true,
@@ -22,20 +31,21 @@ function PreviousNextMethods() {
         slidesToShow: 4,
         slidesToScroll: 1,
     };
+
     return (
         <div className="slider-container slider">
-            <Slider
-                ref={(slider) => {
-                    sliderReference = slider;
-                }}
-                {...settings}
-            >
-                <CustomCard />
-                <CustomCard />
-                <CustomCard />
-                <CustomCard />
-                <CustomCard />
-                <CustomCard />
+            <Slider ref={sliderReference} {...settings}>
+                {cards.map((card) => (
+                    <CustomCard
+                        key={card.id}
+                        title={card.title}
+                        category={card.category}
+                        goal={card.goal}
+                        collected={card.collected}
+                        remaining={card.goal - card.collected}
+                        imageUrl={card.image_url}
+                    />
+                ))}
             </Slider>
             <div style={{ textAlign: 'center' }}>
                 <button className="button donation__swiper_button" onClick={previous}>

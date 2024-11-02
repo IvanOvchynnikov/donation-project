@@ -37,6 +37,7 @@
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    color: #4169e1; /* Icon color */
+    color: #4169e1;
     font-size: 18px;
+    cursor: pointer;
 }
