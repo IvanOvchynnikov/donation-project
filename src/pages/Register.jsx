@@ -10,7 +10,7 @@ import CustomInput from '../components/CustomInput';
 
 const Register = () => {
     const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
+    const [nickname, setNickname] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
@@ -18,12 +18,12 @@ const Register = () => {
         backgroundImage: `url(${imgBackground})`,
     };
 
-    const onSubmit = async (event_) => {
-        event_.preventDefault();
-        let response = await handleRegister(email, username, password, navigate);
-        if (response.status === 200) {
+    const onSubmit = async (event) => {
+        event.preventDefault();
+        let response = await handleRegister(email, nickname, password);
+        if (response && response.status === 201) {
             console.log('Registration successful');
-            navigate('/main');
+            navigate('/');
         }
     };
 
@@ -40,22 +40,18 @@ const Register = () => {
                 <div className="login__window__right">
                     <h2>Register</h2>
                     <form onSubmit={onSubmit}>
-                        <CustomInput
-                            purpose="Email"
-                            value={email}
-                            onChange={(event_) => setEmail(event_.target.value)}
-                        />
+                        <CustomInput purpose="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
                         <CustomInput
                             purpose="Nickname"
-                            value={username}
-                            onChange={(event_) => setUsername(event_.target.value)}
+                            value={nickname}
+                            onChange={(event) => setNickname(event.target.value)}
                         />
                         <CustomInput
                             purpose="Password"
                             img={imgEye}
                             type="password"
                             value={password}
-                            onChange={(event_) => setPassword(event_.target.value)}
+                            onChange={(event) => setPassword(event.target.value)}
                         />
                         <p>At least 8 characters, including letters</p>
                         <CustomButton type="submit">Sign up</CustomButton>

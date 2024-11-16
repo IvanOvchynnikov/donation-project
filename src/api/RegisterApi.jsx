@@ -1,13 +1,14 @@
 import axios from 'axios';
 
-export const handleRegister = async (email, username, password) => {
+export const handleRegister = async (email, nickname, password) => {
     try {
-        return await axios.post('http://localhost:8000/api/register', {
+        console.log(email, nickname, password);
+        return await axios.post('http://localhost:8000/api/signup', {
             email,
-            username,
+            nickname,
             password,
         });
-    } catch (error) {
-        console.error('Registration failed:', error.response?.data || error.message);
+    } catch {
+        alert('Registration failed');
     }
 };

@@ -4,13 +4,14 @@ import * as PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import imgBack from '../assets/img/card_bg.png';
 import imgHeart from '../assets/img/heart_yellow.svg';
 import CustomButton from './CustomButton';
 
-const CustomCard = ({ id, title, category, goal, collected, imageUrl }) => {
+const CustomCard = ({ id, title, category, goal, collected }) => {
     return (
         <div className="card">
-            <img src={imageUrl} alt={title} />
+            <img src={imgBack} alt={title} />
             <div className="card__content">
                 <span className="tag">{category}</span>
                 <h3>{title}</h3>
@@ -41,7 +42,7 @@ const CustomCard = ({ id, title, category, goal, collected, imageUrl }) => {
     );
 };
 CustomCard.propTypes = {
-    id: PropTypes.string,
+    id: PropTypes.number,
     title: PropTypes.string,
     category: PropTypes.string,
     goal: PropTypes.number,

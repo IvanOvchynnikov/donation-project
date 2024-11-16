@@ -25,7 +25,7 @@ const Login = () => {
             let response = await handleLogin(username, password, navigate);
             if (response.status === 200) {
                 alert('Login successful');
-                navigate('/main');
+                navigate('/');
             }
         } catch (error) {
             console.error('Login failed:', error);

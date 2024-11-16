@@ -13,14 +13,29 @@ const Donation = () => {
     const [donationData, setDonationData] = useState();
 
     useEffect(() => {
-        fetchDonationData(id, setDonationData);
+        const x = async () => {
+            const data = await fetchDonationData(id);
+            setDonationData(data);
+        };
+        x().then();
     }, [id]);
 
     if (!donationData) {
         return <div>Loading...</div>;
     }
 
-    const { title, tag, images, description, bankDetails, upiDetails } = donationData;
+    // Destructure the fields from the fetched donation data
+    const {
+        title,
+        tag,
+        image,
+        description,
+        bank_account_number,
+        bank_beneficiary_name,
+        bank_ifsc_code,
+        upi_mobile_number,
+        upi_id,
+    } = donationData;
 
     return (
         <div className="container">
@@ -33,9 +48,7 @@ const Donation = () => {
                 <span className="donation__header-tag">{tag}</span>
             </div>
             <div className="donation__gallery">
-                {images.map((image, index) => (
-                    <img key={index} src={image} alt={`Gallery Image ${index + 1}`} />
-                ))}
+                <img src={image} alt={`Gallery`} />
             </div>
             <div className="donation__content">
                 <h3 className="mt-30">About</h3>
@@ -50,22 +63,22 @@ const Donation = () => {
                 <div className="donation__card mt-30">
                     <h3>Direct Bank Transfer</h3>
                     <span>
-                        Account Number <p>{bankDetails.accountNumber}</p>
+                        Account Number <p>{bank_account_number}</p>
                     </span>
                     <span>
-                        Beneficiary Name <p>{bankDetails.beneficiaryName}</p>
+                        Beneficiary Name <p>{bank_beneficiary_name}</p>
                     </span>
                     <span>
-                        IFSC Code <p>{bankDetails.ifscCode}</p>
+                        IFSC Code <p>{bank_ifsc_code}</p>
                     </span>
                 </div>
                 <div className="donation__card mt-30">
                     <h3>UPI</h3>
                     <span>
-                        Mobile Number <p>{upiDetails.mobileNumber}</p>
+                        Mobile Number <p>{upi_mobile_number}</p>
                     </span>
                     <span>
-                        UPI ID <p>{upiDetails.upiId}</p>
+                        UPI ID <p>{upi_id}</p>
                     </span>
                 </div>
             </div>

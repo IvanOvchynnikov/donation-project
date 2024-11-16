@@ -2,20 +2,17 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../styles/CustomSlider.css';
 
-import React, { useEffect, useRef,useState } from 'react';
+import React, { useRef } from 'react';
 import Slider from 'react-slick';
 
 import { fetchCards } from '../api/SliderApi';
+import useFetch from '../hooks/useFetch';
 import CustomCard from './CustomCard';
 
 function PreviousNextMethods() {
-    const [cards, setCards] = useState([]);
     const sliderReference = useRef(null);
 
-    useEffect(() => {
-        const response = fetchCards().then();
-        setCards([...response.data.cards]);
-    }, []);
+    const { data: cards } = useFetch(fetchCards);
     const next = () => {
         sliderReference.current.slickNext();
     };
@@ -32,18 +29,23 @@ function PreviousNextMethods() {
         slidesToScroll: 1,
     };
 
+    if (!cards) {
+        return;
+    }
+    console.log(cards);
     return (
         <div className="slider-container slider">
             <Slider ref={sliderReference} {...settings}>
-                {cards.map((card) => (
+                {cards.map((card, index) => (
                     <CustomCard
-                        key={card.id}
+                        key={index}
+                        id={card.id}
                         title={card.title}
-                        category={card.category}
-                        goal={card.goal}
-                        collected={card.collected}
-                        remaining={card.goal - card.collected}
-                        imageUrl={card.image_url}
+                        category={card.tag}
+                        goal={1000}
+                        collected={0}
+                        remaining={1000}
+                        imageUrl={'src/' + card.image}
                     />
                 ))}
             </Slider>

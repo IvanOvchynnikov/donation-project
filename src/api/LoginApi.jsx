@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-export const handleLogin = async (username, password) => {
+export const handleLogin = async (nickname, password) => {
     try {
         return await axios.post('http://localhost:8000/api/login', {
-            username,
+            nickname,
             password,
         });
-    } catch (error) {
-        console.error('Login failed:', error.response?.data || error.message);
+    } catch {
+        alert('Login failed');
     }
 };

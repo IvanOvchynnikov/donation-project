@@ -3,7 +3,7 @@ import '../styles/CustomInput.css';
 import * as PropTypes from 'prop-types';
 import React, { useState } from 'react';
 
-const CustomInput = ({ purpose, img }) => {
+const CustomInput = ({ purpose, img, value, onChange }) => {
     const [type, setType] = useState('text');
 
     function make_visible(event_, purpose) {
@@ -20,7 +20,7 @@ const CustomInput = ({ purpose, img }) => {
     return (
         <div className="input-container">
             <label htmlFor={purpose}>{purpose}</label>
-            <input type={type} id={purpose} placeholder={purpose} />
+            <input type={type} id={purpose} placeholder={purpose} value={value} onChange={onChange} />
             {img && (
                 <img src={img} className="icon" alt={purpose} onClick={(event_) => make_visible(event_, purpose)} />
             )}
@@ -31,6 +31,8 @@ const CustomInput = ({ purpose, img }) => {
 CustomInput.propTypes = {
     purpose: PropTypes.string,
     img: PropTypes.string,
+    value: PropTypes.string,
+    onChange: PropTypes.func,
 };
 
 export default CustomInput;
