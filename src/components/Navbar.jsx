@@ -26,10 +26,10 @@ const Navbar = () => {
                     </a>
                 </div>
                 <div className="navbar__right">
-                    <Link to={'/login'}>
+                    <Link to={'/login'} preventScrollReset={true}>
                         <CustomButton style_variant="text">Log in</CustomButton>
                     </Link>
-                    <Link to={'/donation'}>
+                    <Link to={'/donation'} preventScrollReset={true}>
                         <CustomButton>Donate</CustomButton>
                     </Link>
                 </div>

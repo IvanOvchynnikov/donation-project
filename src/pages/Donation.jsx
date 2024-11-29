@@ -1,38 +1,58 @@
 import '../styles/Donation.css';
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
+import { fetchDonationData } from '../api/DonationApi';
 import imgPng from '../assets/img/doc.png';
-import imgKid from '../assets/img/kid.png';
-import imgKids from '../assets/img/kids.png';
-import imgWoman from '../assets/img/woman.png';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 
 const Donation = () => {
+    const { id } = useParams();
+    const [donationData, setDonationData] = useState();
+
+    useEffect(() => {
+        const x = async () => {
+            const data = await fetchDonationData(id);
+            setDonationData(data);
+        };
+        x().then();
+    }, [id]);
+
+    if (!donationData) {
+        return <div>Loading...</div>;
+    }
+
+    // Destructure the fields from the fetched donation data
+    const {
+        title,
+        tag,
+        image,
+        description,
+        bank_account_number,
+        bank_beneficiary_name,
+        bank_ifsc_code,
+        upi_mobile_number,
+        upi_id,
+    } = donationData;
+
     return (
         <div className="container">
             <Navbar />
             <div className="donation__header">
-                <Link to={'/'}>{'< Back'}</Link>
-                <h2>Let’s Make Education For All</h2>
-                <span className="donation__header-tag">🚨 Emergency Requirement</span>
+                <Link to={'/'} preventScrollReset={true}>
+                    {'< Back'}
+                </Link>
+                <h2>{title}</h2>
+                <span className="donation__header-tag">{tag}</span>
             </div>
             <div className="donation__gallery">
-                <img src={imgKid} alt="Child Smiling" />
-                <img src={imgKids} alt="Child Happy" />
-                <img src={imgWoman} alt="Woman happy" />
+                <img src={image} alt={`Gallery`} />
             </div>
             <div className="donation__content">
                 <h3 className="mt-30">About</h3>
-                <p className="donation__content-about">
-                    Veniam quae. Nostrum facere repellendus minus quod aut aliquam neque reiciendis. Qui beatae vel
-                    magnam repudiandae ipsum repellat repudiandae. Voluptate at dolores ut dolor sint occaecati
-                    similique. Velit eius ab delectus temporibus. For dynamic content, add a rich text field to any
-                    collection and then connect a rich text element to that field in the settings panel. Headings,
-                    paragraphs, block-quotes, figures, images, and figure captions can all be styled.
-                </p>
+                <p className="donation__content-about">{description}</p>
                 <h3 className="mt-30">Documents</h3>
                 <span>
                     <img src={imgPng} alt="Document" />
@@ -41,24 +61,24 @@ const Donation = () => {
                 </span>
                 <h3 className="mt-30">Other Donation Methods</h3>
                 <div className="donation__card mt-30">
-                    <h3>Directly Bank Transfer</h3>
+                    <h3>Direct Bank Transfer</h3>
                     <span>
-                        Account Number <p>2223330000456987</p>
+                        Account Number <p>{bank_account_number}</p>
                     </span>
                     <span>
-                        Beneficiary Name <p>Organization</p>
+                        Beneficiary Name <p>{bank_beneficiary_name}</p>
                     </span>
                     <span>
-                        IFSC Code <p>WRDSBI0BNKPIS</p>
+                        IFSC Code <p>{bank_ifsc_code}</p>
                     </span>
                 </div>
                 <div className="donation__card mt-30">
                     <h3>UPI</h3>
                     <span>
-                        Mobile Number <p>8939406129</p>
+                        Mobile Number <p>{upi_mobile_number}</p>
                     </span>
                     <span>
-                        UPI ID <p>21551</p>
+                        UPI ID <p>{upi_id}</p>
                     </span>
                 </div>
             </div>

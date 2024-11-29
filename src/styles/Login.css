@@ -69,9 +69,6 @@ body {
     font-size: 45px;
     margin: 0;
 }
-.login__window__right input {
-    color: #005bbb;
-}
 .login__window__right p {
     margin: 0;
     font-weight: 500;
@@ -82,14 +79,6 @@ body {
     text-align: left;
     width: 290px;
     font-weight: 400;
-}
-.login__window__right p:last-of-type {
-    margin-top: 30px;
-    color: #514347;
-}
-.login__window__right p:last-of-type a {
-    color: #005bbb;
-    text-decoration: none;
 }
 .login__window__right button {
     width: 300px;
@@ -113,4 +102,15 @@ body {
 .separator span {
     font-size: 14px;
     font-weight: bold;
+}
+.login__window_right__p {
+    font-size: 15px !important;
+    text-align: center !important;
+    margin-top: 30px;
+    font-weight: 400 !important;
+    color: #72787e;
+}
+.login__window__right p:last-of-type a {
+    color: #005bbb;
+    text-decoration: none;
 }
